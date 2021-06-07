@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在Android手机上使用Termux - 在风景里看风景</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Daniel" /><meta name="description" content="在Android手机上安装Termux，并搭建简单的开发环境。" /><meta name="keywords" content="android, termux" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="https://danielliou.github.io/post/termux-on-android/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="在Android手机上使用Termux" />
+<meta property="og:description" content="在Android手机上安装Termux，并搭建简单的开发环境。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://danielliou.github.io/post/termux-on-android/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-17T20:22:13&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-17T20:22:13&#43;08:00" />
+
+<meta itemprop="name" content="在Android手机上使用Termux">
+<meta itemprop="description" content="在Android手机上安装Termux，并搭建简单的开发环境。"><meta itemprop="datePublished" content="2021-03-17T20:22:13&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-17T20:22:13&#43;08:00" />
+<meta itemprop="wordCount" content="3536">
+<meta itemprop="keywords" content="android,termux," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在Android手机上使用Termux"/>
+<meta name="twitter:description" content="在Android手机上安装Termux，并搭建简单的开发环境。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">在风景里看风景</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">在风景里看风景</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在Android手机上使用Termux</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-17 </span>
+        <div class="post-category">
+            <a href="/categories/it/"> IT </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#android手机配置要求">Android手机配置要求</a></li>
+    <li><a href="#安装termux">安装Termux</a>
+      <ul>
+        <li><a href="#安装termux-1">安装Termux</a></li>
+        <li><a href="#设置termux访问手机存储的权限">设置Termux访问手机存储的权限</a></li>
+        <li><a href="#更换termux的软件源">更换Termux的软件源</a></li>
+        <li><a href="#安装社区软件仓库">安装社区软件仓库</a></li>
+        <li><a href="#安装惯用软件">安装惯用软件</a></li>
+        <li><a href="#设置termux的键盘扩展按键">设置Termux的键盘扩展按键</a></li>
+        <li><a href="#编辑欢迎信息">编辑欢迎信息</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装sshd服务">安装sshd服务</a>
+      <ul>
+        <li><a href="#安装sshd服务-1">安装sshd服务</a></li>
+        <li><a href="#确认ssh服务的配置文件">确认SSH服务的配置文件</a></li>
+        <li><a href="#修改用户口令">修改用户口令</a></li>
+        <li><a href="#运行ssh服务器">运行SSH服务器</a></li>
+        <li><a href="#停止ssh服务">停止SSH服务</a></li>
+        <li><a href="#远程访问">远程访问</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装python">安装python</a>
+      <ul>
+        <li><a href="#安装python-1">安装Python</a></li>
+        <li><a href="#安装依赖的软件包">安装依赖的软件包</a></li>
+        <li><a href="#安装numpy和scipy">安装Numpy和Scipy</a></li>
+        <li><a href="#安装matpolit">安装matpolit</a></li>
+        <li><a href="#安装pandas">安装pandas</a></li>
+        <li><a href="#安装jupyterlab">安装jupyterlab</a></li>
+        <li><a href="#安装tkinter">安装tkinter</a></li>
+        <li><a href="#安装其他模块">安装其他模块</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装mariadb">安装mariadb</a>
+      <ul>
+        <li><a href="#安装mariadb软件包">安装<em>mariadb</em>软件包</a></li>
+        <li><a href="#启动服务">启动服务</a></li>
+        <li><a href="#激活远程访问">激活远程访问</a></li>
+        <li><a href="#停止服务">停止服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装mongo">安装mongo</a>
+      <ul>
+        <li><a href="#安装软件包">安装软件包</a></li>
+        <li><a href="#添加用户">添加用户</a></li>
+        <li><a href="#启动服务并激活验证及远程访问支持">启动服务并激活验证及远程访问支持</a></li>
+        <li><a href="#停止服务-1">停止服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装redis">安装redis</a>
+      <ul>
+        <li><a href="#安装软件">安装软件</a></li>
+        <li><a href="#修改配置文件">修改配置文件</a></li>
+        <li><a href="#启动服务-1">启动服务</a></li>
+        <li><a href="#连接测试">连接测试</a></li>
+        <li><a href="#停止redis">停止redis</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装postgresql">安装postgresql</a>
+      <ul>
+        <li><a href="#安装软件包-1">安装软件包</a></li>
+        <li><a href="#创建skeleton-database">创建skeleton database</a></li>
+        <li><a href="#修改配置文件以允许远程访问">修改配置文件以允许远程访问</a></li>
+        <li><a href="#启动服务器">启动服务器</a></li>
+        <li><a href="#创建用户及数据库">创建用户及数据库</a></li>
+        <li><a href="#在本地打开并验证数据库">在本地打开并验证数据库</a></li>
+        <li><a href="#停止服务-2">停止服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装nginx--php">安装nginx &amp; php</a>
+      <ul>
+        <li><a href="#安装软件包-2">安装软件包</a></li>
+        <li><a href="#修改php配置">修改<em>PHP</em>配置</a></li>
+        <li><a href="#修改nginx配置">修改<em>nginx</em>配置</a></li>
+        <li><a href="#运行php并重启nginx">运行<em>PHP</em>并重启<em>nginx</em></a></li>
+        <li><a href="#查看服务是否运行">查看服务是否运行</a></li>
+        <li><a href="#停止服务-3">停止服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装nodejs">安装nodejs</a>
+      <ul>
+        <li><a href="#安装软件包-3">安装软件包</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装openjdk">安装OpenJDK</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#验证使用">验证/使用</a></li>
+        <li><a href="#移除">移除</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装图形界面">安装图形界面</a>
+      <ul>
+        <li><a href="#激活x11软件仓库">激活X11软件仓库</a></li>
+        <li><a href="#安装vnc服务器">安装VNC服务器</a></li>
+        <li><a href="#查看及停止vnc服务器">查看及停止VNC服务器</a></li>
+        <li><a href="#远程连接vnc服务器">远程连接VNC服务器</a></li>
+        <li><a href="#安装窗口管理器">安装窗口管理器</a></li>
+      </ul>
+    </li>
+    <li><a href="#备份及恢复">备份及恢复</a>
+      <ul>
+        <li><a href="#备份termux">备份Termux</a></li>
+        <li><a href="#恢复备份">恢复备份</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>现在的Android手机的配置越来越强劲，完全在ndriod手机上利用<a href="https://termux.com/"><em>Termux</em></a>搭建一个简单开发环境。</p>
+<p>安装配置主要参考<em>Termux Wiki</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，网上有篇名为《<em>Termux 高级终端安装使用配置教程</em>》<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>的文章，写的也很全面，可以参考。本文主要是为了备忘，嘿嘿。</p>
+<h1 id="android手机配置要求">Android手机配置要求</h1>
+<p>根据<em>Termux Wiki</em>上的说明，Android手机的配置应当满足：</p>
+<ul>
+<li>Android 7.0 - 9.0 (10+可能会有问题)</li>
+<li>CPU: AArch64, ARM, i686, x86_64.</li>
+<li>至少200MB的存储空间.</li>
+</ul>
+<p>我在MIUI12上安装<em>Termux</em>，暂时未发现问题。</p>
+<h1 id="安装termux">安装Termux</h1>
+<h2 id="安装termux-1">安装Termux</h2>
+<p><em>Termux</em>软件可以从<a href="https://f-droid.org/">F-Droid</a>上下载。Google Play上的版本不再更新。</p>
+<p>几个常用命令：</p>
+<ul>
+<li><code>pkg autoclean</code>
+从缓存中移除已经过期的 <em>.deb</em> 文件</li>
+<li><code>pkg clean</code>
+从缓存中移除所有 <em>.deb</em> 文件</li>
+<li><code>pkg files &lt;package&gt;</code>
+列出指定的软件包中所有文件</li>
+<li><code>pkg install &lt;package&gt;</code>
+安装一个新的软件包</li>
+<li><code>pkg list-all</code>
+列出所有有效的软件包</li>
+<li><code>pkg list-installed</code>
+列出所有已经安装的软件包</li>
+<li><code>pkg reinstall &lt;package&gt;</code>
+重新安装指定的软件包</li>
+<li><code>pkg search &lt;query&gt;</code>
+根据指定的条件进行查找</li>
+<li><code>pkg show &lt;package&gt;</code>
+列出指定软件包的信息</li>
+<li><code>pkg uninstall &lt;package&gt;</code>
+移除已经安装软件包</li>
+<li><code>pkg update</code>
+更新软件包列表</li>
+<li><code>pkg upgrade</code>
+升级已经安装的软件包</li>
+</ul>
+<h2 id="设置termux访问手机存储的权限">设置Termux访问手机存储的权限</h2>
+<p><em>Termux</em>默认只能访问自己的数据，要允许它访问手机存储就必须给予它相应的权限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ termux-setup-storage
+</code></pre></td></tr></table>
+</div>
+</div><p>授权后在Termux主目录下会看到一个<strong>storage</strong>子目录，此即手机存储的链接，</p>
+<h2 id="更换termux的软件源">更换Termux的软件源</h2>
+<p><em>Termux</em>提供了一个GUI工具，在命令行中输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ termux-change-repo
+</code></pre></td></tr></table>
+</div>
+</div><p>当然，也可以手动修改配置文件<em>sources.list</em>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sed -i &#39;s@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/termux-packages-24 stable main@&#39; $PREFIX/etc/apt/sources.list
+
+$ sed -i &#39;s@^\(deb.*games stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/game-packages-24 games stable@&#39; $PREFIX/etc/apt/sources.list.d/game.list
+
+$ sed -i &#39;s@^\(deb.*science stable\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/science-packages-24 science stable@&#39; $PREFIX/etc/apt/sources.list.d/science.list
+</code></pre></td></tr></table>
+</div>
+</div><p>更新软件源后需要刷新<em>Termux</em>中的软件包信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg update
+</code></pre></td></tr></table>
+</div>
+</div><p><em>Termux</em>在更新软件列表的之后会自动列出可以升级的软件并提示用户是否需要升级。</p>
+<p>参考：<em>Termux镜像使用帮助</em><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<h2 id="安装社区软件仓库">安装社区软件仓库</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl -LO https://its-pointless.github.io/setup-pointless-repo.sh
+$ bash setup-pointless-repo.sh
+$ pkg update
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装惯用软件">安装惯用软件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install vim wget git tree build-essential libcompiler-rt sqlite -y
+$ pkg install vim-python -y
+
+## 安装nmap, 检查端口
+# $ nmap -Pn 127.0.0.1
+# $ nmap 127.0.0.1
+$ pkg install nmap -y
+
+# 安装proot，模拟root环境
+# $ termux-chroot
+# $ exit 
+$ pkg install proot -y
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="设置termux的键盘扩展按键">设置Termux的键盘扩展按键</h2>
+<p>编辑主目录下的<code>~/.termux/termux.properties</code>文件，添加下面的内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">extra-keys = [[&#39;ESC&#39;,&#39;CTRL&#39;,&#39;|&#39;,&#39;`&#39;,&#39;UP&#39;,&#39;QUOTE&#39;,&#39;APOSTROPHE&#39;], \
+               [&#39;TAB&#39;,&#39;/&#39;,&#39;-&#39;,&#39;LEFT&#39;,&#39;DOWN&#39;,&#39;RIGHT&#39;,&#39;~&#39;]]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="编辑欢迎信息">编辑欢迎信息</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim $PREFIX/etc/motd
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装sshd服务">安装sshd服务</h1>
+<h2 id="安装sshd服务-1">安装sshd服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install openssh -y
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="确认ssh服务的配置文件">确认SSH服务的配置文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cat $PREFIX/etc/ssh/sshd_config
+</code></pre></td></tr></table>
+</div>
+</div><p>文件的内容应为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">PrintMotd yes
+PasswordAuthentication yes
+PubkeyAcceptedKeyTypes +ssh-dss
+Subsystem sftp /data/data/com.termux/files/usr/libexec/sftp-server  
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改用户口令">修改用户口令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ passwd
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="运行ssh服务器">运行SSH服务器</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sshd
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="停止ssh服务">停止SSH服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkill sshd
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="远程访问">远程访问</h2>
+<p><code>sshd</code>默认的SSH端口号为<strong>8022</strong>，访问的用户是任意的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh anyname@192.168.1.107 -p 8022
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装python">安装python</h1>
+<h2 id="安装python-1">安装Python</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install python
+</code></pre></td></tr></table>
+</div>
+</div><p>考虑到国内访问<em>pypi</em>下载比较慢的情况，可以设置一个国内源的环境变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ export PIPCHINA=&#34;https://pypi.tuna.tsinghua.edu.cn/&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>当使用默认的源安装<em>python</em>模块包失败的时候可以试试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pip install -U ipython -i $PIPCHINA
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装依赖的软件包">安装依赖的软件包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install libpng freetype libzmq libcrypt pkg-config libjpeg-turbo libtiff littlecms tk libwebp rust -y
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装numpy和scipy">安装Numpy和Scipy</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install -y numpy
+$ pkg install -y scipy
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装matpolit">安装matpolit</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 先安装这个，否则再安装matplotlib时kiwisolver模块报错
+$ pip install wheel
+
+# 安装matplotlib
+$ pip install matplotlib
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装pandas">安装pandas</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ export CFLAGS=&#34;-Wno-deprecated-declarations -Wno-unreachable-code&#34;
+$ pip install pandas
+$ unset CFLAGS
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装jupyterlab">安装jupyterlab</h2>
+<ol>
+<li>安装相关软件包：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pip install pyzmq
+$ pip install jupyterlab
+$ pip install jupyter-git
+$ pip install jupyterlab-drawio
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>生成配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ jupyter notebook --generate-config
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>修改配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim /data/data/com.termux/files/home/.jupyter/jupyter_notebook_config.py
+</code></pre></td></tr></table>
+</div>
+</div><p>在文件中编辑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">c.NotebookApp.ip=&#39;*&#39; # 允许任何ip访问
+c.NotebookApp.open_browser = False # 默认不打开浏览器
+c.NotebookApp.port =8888 # 可自行指定一个端口, 访问时使用该端口
+c.NotebookApp.allow_remote_access = True
+c.NotebookApp.notebook_dir = ‘YOUR_DIRECTORY’
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>运行服务器</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ jupyter lab
+</code></pre></td></tr></table>
+</div>
+</div><p>在命令窗口拷贝访问地址并在浏览器中打开：<code>http://localhost:8888/lab?token=0ea03b99aa2456eae0cd69f720ed021370823639b8c7a05c</code>
+设置访问密码后登录程序。
+为了更好的使用<code>jupyterlab</code>，最好安装<code>nodejs</code>以便于安装插件。</p>
+<h2 id="安装tkinter">安装tkinter</h2>
+<p><code>tkinter</code>只能在图形环境下使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install python-tkinter
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装其他模块">安装其他模块</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pip install cpython
+$ pip install bs4
+$ pip install Gensim
+$ pip install seaborn
+$ pip install plotly
+$ pip install bokeh
+$ pip install pydot
+$ pip install nltk
+$ BLIS_ARCH=&#34;generic&#34; pip install spacy
+$ pip install scrapy
+$ pip install eyeD3
+$ pip install blaze
+$ pip install tinydb
+$ pip install pymysql
+$ pip install psycopg2-binary
+$ pip install pymongo
+$ pip install redis
+$ pip install ipdb
+$ pip install nudepy
+$ pip install pytest
+$ pip install nose2
+$ pip install pyautogui
+$ pip install pyecharts
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装mariadb">安装mariadb</h1>
+<h2 id="安装mariadb软件包">安装<em>mariadb</em>软件包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install mariadb -y
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动服务">启动服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mysqld &amp;
+或
+¥ nohup mysqld &amp;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="激活远程访问">激活远程访问</h2>
+<ol>
+<li>建立配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim $PREFIX/etc/my.cnf.d/my.cnf
+</code></pre></td></tr></table>
+</div>
+</div><p>输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[mysql]
+default-character-set=utf8
+   
+[mysqld]
+skip-name-resolve 
+port=3306 
+max_connections=200 
+character-set-server=utf8 
+default-storage-engine=INNODB 
+sql-mode=&#34;STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#34; 
+lower_case_table_names=1
+max_allowed_packet=16M
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>在命令行界面使用<em>Termux</em>用户名登录数据库系统：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mysql -u $(whoami)
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>变更 <em>root</em> 用户的密码：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">use mysql;
+set password for &#39;root&#39;@&#39;localhost&#39; = password(&#39;YOUR_ROOT_PWD&#39;);
+flush privileges;
+quit;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>激活远程访问</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 登录 Mariadb
+$ mysql -u root -p
+</code></pre></td></tr></table>
+</div>
+</div><p>在 Mariadb中输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 更改权限
+grant all on *.* to root@&#39;%&#39; identified by &#39;YOUR_PASSWD&#39; with grant option;
+  
+# 或者使用新用户
+create user YOUR_USERNAME identified by &#39;YOUR_PASSWD&#39;;
+grant all on *.* to YOUR_USERNAME@&#39;%&#39; identified by &#39;YOUR_PASSWD&#39; with grant option;
+  
+# 刷新权限
+flush privileges;
+quit;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="停止服务">停止服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkill mysql
+</code></pre></td></tr></table>
+</div>
+</div><p>参考：<em>Termux安装Mariadb</em><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<h1 id="安装mongo">安装mongo</h1>
+<h2 id="安装软件包">安装软件包</h2>
+<p>mongo可以通过社区软件仓库直接安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install mongodb
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="添加用户">添加用户</h2>
+<ol>
+<li>启动mongo服务</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mongod
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>本地连接mongo</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mongo
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>添加用户
+在<code>mongo</code>交互命令窗口输入：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">use admin
+db.createUser(
+  {
+    user: &#34;myUserAdmin&#34;,
+    pwd: passwordPrompt(),
+    roles: [ { role: &#34;userAdminAnyDatabase&#34;, db: &#34;admin&#34; }, &#34;readWriteAnyDatabase&#34; ]
+  }
+)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动服务并激活验证及远程访问支持">启动服务并激活验证及远程访问支持</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mongod --bind_ip_all --auth --dbpath /data/data/com.termux/files/home/data/mongo
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="停止服务-1">停止服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkill mongo
+</code></pre></td></tr></table>
+</div>
+</div><p>或在服务的本地窗口按<kbd>Ctrl</kbd>+<kbd>C</kbd>中止服务。</p>
+<h1 id="安装redis">安装redis</h1>
+<h2 id="安装软件">安装软件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install redis
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改配置文件">修改配置文件</h2>
+<ol>
+<li>复制配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mkdir -p ~/data/redis
+$ cp $PREFIX/etc/redis.conf ~/data/redis/
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>修改配置文件<code>redis.conf</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 添加
+requirepass PASSWORD
+
+# 注释掉bind这一行
+# bind 127.0.0.1
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动服务-1">启动服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ redis-server /data/data/com.termux/files/home/data/redis/redis.conf
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="连接测试">连接测试</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 本地
+redis-cli
+
+# 远程
+redis-cli -h SERVERIP -p 6379 -a PASSWORD
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="停止redis">停止redis</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ kill -QUIT redis_PID
+
+或
+
+$ pkill redis
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装postgresql">安装postgresql</h1>
+<h2 id="安装软件包-1">安装软件包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install postgresql
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="创建skeleton-database">创建skeleton database</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mkdir -p ~/data/postgresql
+$ initdb ~/data/postgresql
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改配置文件以允许远程访问">修改配置文件以允许远程访问</h2>
+<ol>
+<li>编辑<code>postgresql.conf</code>:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim ~/data/postgresql/postgresql.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">listen_addresses = &#39;*&#39;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>编辑<code>pg_hba.conf</code>：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim ~/data/postgresql/pg_hba.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>在文件末尾添加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">host    all    all    0.0.0.0/0    md5
+host    all    all    ::/0         md5
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动服务器">启动服务器</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pg_ctl -D /data/data/com.termux/files/home/data/postgresql -l /data/data/com.termux/files/home/data/logs/postgres.log start
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="创建用户及数据库">创建用户及数据库</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ createuser --superuser --pwprompt yourUserName
+$ createdb testdb
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="在本地打开并验证数据库">在本地打开并验证数据库</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ psql testdb
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="停止服务-2">停止服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pg_ctl -D /data/data/com.termux/files/home/data/postgresql -l /data/data/com.termux/files/home/data/logs/postgres.log stop
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装nginx--php">安装nginx &amp; php</h1>
+<h2 id="安装软件包-2">安装软件包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install nginx php-fpm -y
+</code></pre></td></tr></table>
+</div>
+</div><p>验证安装是否正确：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ nginx -t
+$ php-fpm -v
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改php配置">修改<em>PHP</em>配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim $PREFIX/etc/php-fpm.d/www.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>修改配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">listen = /data/data/com.termux/files/usr/var/run/php-fpm.sock
+</code></pre></td></tr></table>
+</div>
+</div><p>为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">listen = 127.0.0.1:9000
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改nginx配置">修改<em>nginx</em>配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vim $PREFIX/etc/nginx/nginx.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>修改<strong>http</strong>节中<strong>server</strong>部分的内容为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">server {
+    listen       8080;
+    server_name  localhost;
+    location / {
+      root   /data/data/com.termux/files/home/data/www;
+        index  index.html index.htm index.php;
+  }
+  
+    error_page   500 502 503 504  /50x.html;
+  
+    location = /50x.html {
+        root   /data/data/com.termux/files/home/data/www;
+    }
+  
+    location ~ \.php$ {
+        root           html;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /data/data/com.termux/files/home/data/www$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="运行php并重启nginx">运行<em>PHP</em>并重启<em>nginx</em></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ php-fpm
+$ nginx -s reload
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="查看服务是否运行">查看服务是否运行</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pgrep nginx
+$ pgrep php
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="停止服务-3">停止服务</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ nginx -s quit
+或
+$ nginx -s stop
+或
+$ pkill nginx
+
+$ pkill php-fpm
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装nodejs">安装nodejs</h1>
+<h2 id="安装软件包-3">安装软件包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install nodejs -y
+# 或者安装长期支持的版本，推荐
+$ pkg install nodejs-lts -y
+</code></pre></td></tr></table>
+</div>
+</div><p>使用<em>nodejs</em>环境的时候，最好也安装<em>python</em>和<em>build-essential</em>编译扩展的时候可能会用到。</p>
+<h1 id="安装openjdk">安装OpenJDK</h1>
+<h2 id="安装">安装</h2>
+<p>要在<em>Termux</em>上安装<code>OpenJDK</code>，可以使用<a href="https://github.com/MasterDevX/Termux-Java">Termux-Java</a>项目来完成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ wget https://raw.githubusercontent.com/MasterDevX/java/master/installjava 
+$ bash installjava
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="验证使用">验证/使用</h2>
+<p>验证<code>java</code>是否安装成功（使用<code>java</code>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 必须先运行termux-chroot，否则会报Bad system call错误
+$ termux-chroot
+$ java -version
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="移除">移除</h2>
+<p>从项目网站下载<code>uninstall_java.sh</code>并执行。</p>
+<h1 id="安装图形界面">安装图形界面</h1>
+<h2 id="激活x11软件仓库">激活X11软件仓库</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install x11-repo
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装vnc服务器">安装VNC服务器</h2>
+<ol>
+<li>安装软件包</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install tigervnc
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>设置vnc服务器</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vncserver -localhost
+</code></pre></td></tr></table>
+</div>
+</div><p>根据提示信息设置访问密码。
+如果设置成功，会看到服务器成功运行在<code>localhost :1</code>的提示信息。</p>
+<ol start="3">
+<li>在<code>.bashrc</code>文件中添加：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">export DISPLAY=&#34;:1&#34;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="查看及停止vnc服务器">查看及停止VNC服务器</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 查看
+$ vncserver -list
+
+# 停止标号为1的服务
+¥ vncserver -kill :1
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="远程连接vnc服务器">远程连接VNC服务器</h2>
+<ol>
+<li>运行VNC服务器</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ vncserver
+</code></pre></td></tr></table>
+</div>
+</div><p>后面不要带参数</p>
+<ol start="2">
+<li>远程连接VNC服务器
+服务器的端口从<strong>5900</strong>开始，标号为<strong>1</strong>的就是<strong>5901</strong>（5900+1）。
+远程客户端连接设置时：</li>
+</ol>
+<ul>
+<li>地址：vncserver_ip:5901</li>
+<li>名称：任意
+连接时会要求输入密码，即为最初设置的密码。</li>
+</ul>
+<h2 id="安装窗口管理器">安装窗口管理器</h2>
+<ol>
+<li>安装<code>xfce4</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pkg install xfce4
+$ pkg install xfce4-terminal
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>编辑<code>~/.vnc/xstartup</code>文件，添加：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">xfce4-session &amp;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>重启VNC服务。</li>
+</ol>
+<h1 id="备份及恢复">备份及恢复</h1>
+<h2 id="备份termux">备份Termux</h2>
+<ol>
+<li>前提：激活存储访问功能</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ termux-setup-storage
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>将主目录的内容备份到手机存储的指定位置</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 进入主目录
+$ cd /data/data/com.termux/files
+
+# 备份到存储(/sdcard)的指定位置
+$ tar -zcvf /sdcard/bak/termux-backup.tar.gz home usr
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="恢复备份">恢复备份</h2>
+<ol>
+<li>前提：确认手机存储访问功能正常</li>
+<li>恢复备份</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># 进入主目录
+$ cd /data/data/com.termux/files
+
+# 恢复备份内容
+tar -zxf /sdcard/bak/termux-backup.tar.gz --recursive-unlink --preserve-permissions
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>退出<code>Termux</code>并重启</li>
+</ol>
+<!--more-->
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://wiki.termux.com/wiki/Main_Page">The Termux Wiki</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://www.sqlsec.com/2018/05/termux.html">Termux 高级终端安装使用配置教程</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://mirror.tuna.tsinghua.edu.cn/help/termux/">Termux 镜像使用帮助</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://www.icoeus.com/archives/3/">Termux安装Mariadb</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/android/">android</a>
+          <a href="/tags/termux/">termux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/aufo-raspbian/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用autofs自动挂载移动设备</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://danielliou.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Daniel</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

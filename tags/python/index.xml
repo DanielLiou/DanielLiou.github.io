@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on 在风景里看风景</title>
+    <link>https://danielliou.github.io/tags/python/</link>
+    <description>Recent content in python on 在风景里看风景</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 07 Jun 2021 10:38:25 +0800</lastBuildDate><atom:link href="https://danielliou.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Raspbian中安装部分Python库的踩坑记录</title>
+      <link>https://danielliou.github.io/post/raspbian_pythonlib_trap/</link>
+      <pubDate>Mon, 07 Jun 2021 10:38:25 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/post/raspbian_pythonlib_trap/</guid>
+      <description>&lt;p&gt;在Raspbian中因为需要使用&lt;code&gt;pip&lt;/code&gt;安装了一些Python库，其中几个库装的磕磕绊绊。为了防止下次再次踩坑，特此记录一下。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

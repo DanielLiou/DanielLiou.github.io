@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用autofs自动挂载移动设备 - 在风景里看风景</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Daniel" /><meta name="description" content="最近我给自己的树莓派添加了一个U盘，希望能够在Raspbian系统启动的时候自动将其挂载到指定目录下。 是使用**/etc/fstab**呢，还是使用**autofs**？
+" /><meta name="keywords" content="raspbian, autofs" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="https://danielliou.github.io/post/aufo-raspbian/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用autofs自动挂载移动设备" />
+<meta property="og:description" content="最近我给自己的树莓派添加了一个U盘，希望能够在Raspbian系统启动的时候自动将其挂载到指定目录下。
+是使用**/etc/fstab**呢，还是使用**autofs**？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://danielliou.github.io/post/aufo-raspbian/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-06-04T13:20:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-06-04T13:20:00&#43;08:00" />
+
+<meta itemprop="name" content="使用autofs自动挂载移动设备">
+<meta itemprop="description" content="最近我给自己的树莓派添加了一个U盘，希望能够在Raspbian系统启动的时候自动将其挂载到指定目录下。
+是使用**/etc/fstab**呢，还是使用**autofs**？"><meta itemprop="datePublished" content="2021-06-04T13:20:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-06-04T13:20:00&#43;08:00" />
+<meta itemprop="wordCount" content="775">
+<meta itemprop="keywords" content="raspbian," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用autofs自动挂载移动设备"/>
+<meta name="twitter:description" content="最近我给自己的树莓派添加了一个U盘，希望能够在Raspbian系统启动的时候自动将其挂载到指定目录下。
+是使用**/etc/fstab**呢，还是使用**autofs**？"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">在风景里看风景</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">在风景里看风景</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用autofs自动挂载移动设备</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-06-04 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#etcfstab方法">/etc/fstab方法</a></li>
+        <li><a href="#autofs自动挂载">autofs自动挂载</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>最近我给自己的树莓派添加了一个U盘，希望能够在Raspbian系统启动的时候自动将其挂载到指定目录下。
+是使用**/etc/fstab**呢，还是使用**autofs**？</p>
+<h2 id="etcfstab方法">/etc/fstab方法</h2>
+<p>从以往的经验而言，最简单的方法是在fstab中添加相应设备记录。这个方法步骤简单：</p>
+<ul>
+<li>编辑<code>/etc/fstab</code>文件，将目标设备的信息、挂载选项及挂载目录添加进去。</li>
+<li>保存并使用命令<code>mount -a</code>进行验证。</li>
+</ul>
+<p>这种方法简单有效，但是有个风险就是如果设备损坏了会导致机器系统无法正常启动。如果远程操作树莓派遇到这种情况就要让人崩溃了。解决方法之一是在<code>fstab</code>文件中添加设备记录时，在挂载选项中添加<code>nofail</code> (Debian的衍生版及早于Ubuntu 16.04的系统中，改用<code>nobootwait</code>)，这样可以跳过挂载失败的设备（没有验证哦）。</p>
+<p>另外一种方式，也就是我现在用的——安装autofs，使用时挂载。</p>
+<h2 id="autofs自动挂载">autofs自动挂载</h2>
+<p>aufo服务程序检测到用户试图访问一个尚未挂载的文件系统时，将自动挂载该文件系统（开机时不一定要挂载）；当用户一段时间不使用自动挂载的目录，会自动卸载（默认时间5分钟——我没有验证过。）</p>
+<p>步骤：</p>
+<ol>
+<li>安装软件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo apt install autofs -y
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>获得目标设备的信息</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo blkid
+</code></pre></td></tr></table>
+</div>
+</div><p>可以获得设备的label，uuid，type等信息。如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/dev/sda1: LABEL=&#34;test&#34; UUID=&#34;075b0d0c-f480-42b3-9547-3c305c11a80d&#34; TYPE=&#34;ext4&#34; PARTUUID=&#34;7a101a0b-01&#34;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>编辑主配置文件 <code>/etc/auto.master</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo vim /etc/auto.master
+</code></pre></td></tr></table>
+</div>
+</div><p>添加目标挂载的主目录及对应的子配置文件信息，如在文件末尾直接加一行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/media /etc/auto.misc
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>编辑对应的子配置文件信息
+对应的子配置文件名为<code>/etc/auto.misc</code>。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo vim /etc/auto.misc
+</code></pre></td></tr></table>
+</div>
+</div><p>添加设备的挂载信息，如在文件末尾添加一行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">testDisk -fstype=ext4,rw :/dev/disk/by-uuid/075b0d0c-f480-42b3-9547-3c305c11a80d
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>重新启动服务</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ sudo service autofs restart
+</code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>验证挂载
+进入对应的目录，使用<code>ls</code>命令是看不到挂载目录的，可以使用<code>cd</code>命令激活挂载。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cd /media
+$ ls                # 此时是看不到挂载目录的，未激活自动挂载
+$ cd ./testDisk     # 激活自动挂载
+$ ……                # 使用其他命令验证
+</code></pre></td></tr></table>
+</div>
+</div><!--more-->
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/raspbian/">raspbian</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/raspbian_pythonlib_trap/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在Raspbian中安装部分Python库的踩坑记录</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/termux-on-android/">
+            <span class="next-text nav-default">在Android手机上使用Termux</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://danielliou.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Daniel</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

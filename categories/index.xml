@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 在风景里看风景</title>
+    <link>https://danielliou.github.io/categories/</link>
+    <description>Recent content in Categories on 在风景里看风景</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 07 Jun 2021 10:38:25 +0800</lastBuildDate><atom:link href="https://danielliou.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IT</title>
+      <link>https://danielliou.github.io/categories/it/</link>
+      <pubDate>Mon, 07 Jun 2021 10:38:25 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/categories/it/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

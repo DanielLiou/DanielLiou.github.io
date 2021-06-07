@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IT on 在风景里看风景</title>
+    <link>https://danielliou.github.io/categories/it/</link>
+    <description>Recent content in IT on 在风景里看风景</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 07 Jun 2021 10:38:25 +0800</lastBuildDate><atom:link href="https://danielliou.github.io/categories/it/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Raspbian中安装部分Python库的踩坑记录</title>
+      <link>https://danielliou.github.io/post/raspbian_pythonlib_trap/</link>
+      <pubDate>Mon, 07 Jun 2021 10:38:25 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/post/raspbian_pythonlib_trap/</guid>
+      <description>&lt;p&gt;在Raspbian中因为需要使用&lt;code&gt;pip&lt;/code&gt;安装了一些Python库，其中几个库装的磕磕绊绊。为了防止下次再次踩坑，特此记录一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在Android手机上使用Termux</title>
+      <link>https://danielliou.github.io/post/termux-on-android/</link>
+      <pubDate>Wed, 17 Mar 2021 20:22:13 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/post/termux-on-android/</guid>
+      <description>&lt;p&gt;现在的Android手机的配置越来越强劲，完全在ndriod手机上利用&lt;a href=&#34;https://termux.com/&#34;&gt;&lt;em&gt;Termux&lt;/em&gt;&lt;/a&gt;搭建一个简单开发环境。&lt;/p&gt;
+&lt;p&gt;安装配置主要参考&lt;em&gt;Termux Wiki&lt;/em&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，网上有篇名为《&lt;em&gt;Termux 高级终端安装使用配置教程&lt;/em&gt;》&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;的文章，写的也很全面，可以参考。本文主要是为了备忘，嘿嘿。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

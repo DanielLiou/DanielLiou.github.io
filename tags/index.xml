@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 在风景里看风景</title>
+    <link>https://danielliou.github.io/tags/</link>
+    <description>Recent content in Tags on 在风景里看风景</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 07 Jun 2021 10:38:25 +0800</lastBuildDate><atom:link href="https://danielliou.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python</title>
+      <link>https://danielliou.github.io/tags/python/</link>
+      <pubDate>Mon, 07 Jun 2021 10:38:25 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspbian</title>
+      <link>https://danielliou.github.io/tags/raspbian/</link>
+      <pubDate>Mon, 07 Jun 2021 10:38:25 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/tags/raspbian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>https://danielliou.github.io/tags/android/</link>
+      <pubDate>Wed, 17 Mar 2021 20:22:13 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>termux</title>
+      <link>https://danielliou.github.io/tags/termux/</link>
+      <pubDate>Wed, 17 Mar 2021 20:22:13 +0800</pubDate>
+      
+      <guid>https://danielliou.github.io/tags/termux/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
